@@ -19,7 +19,7 @@ export function ProductCard({ p, index = 0 }: { p: Product; index?: number }) {
       dir={isRtl ? "rtl" : "ltr"}
     >
       <Link to="/rituals/$slug" params={{ slug: p.slug }} className="block">
-        <div className="relative overflow-hidden bg-gradient-to-b from-[color:var(--sand)] to-[color:var(--sand-deep)] aspect-[3/4]">
+        <div className="relative overflow-hidden bg-gradient-to-b from-[color:var(--sand)] to-[color:var(--sand-deep)] dark:from-white dark:to-neutral-100 aspect-[3/4]">
           {p.badge && (
             <span className={`absolute top-4 ${isRtl ? "right-4" : "left-4"} z-10 px-3 py-1 text-[10px] tracking-[0.3em] uppercase bg-[color:var(--herbal-deep)]/90 text-[color:var(--sand)] backdrop-blur`}>
               {p.badge}

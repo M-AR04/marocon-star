@@ -41,7 +41,7 @@ function Hero() {
         <img
           src={products[0].images[0]}
           alt="Liquid Gold Argan"
-          className="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-multiply"
+          className="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-multiply dark:mix-blend-normal dark:opacity-10"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--sand)]/40 via-[color:var(--sand)]/70 to-[color:var(--sand)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,color-mix(in_oklch,var(--gold)_30%,transparent),transparent_55%)]" />
@@ -185,7 +185,7 @@ function RitualStory() {
       <div className="mx-auto max-w-7xl px-5 lg:px-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <Reveal>
           <div className="relative">
-            <div className="aspect-[4/5] overflow-hidden bg-[color:var(--sand-deep)] grain relative">
+            <div className="aspect-[4/5] overflow-hidden bg-[color:var(--sand-deep)] dark:bg-white grain relative">
               <img src={products[2].images[0]} alt="Hammam" className="absolute inset-0 h-full w-full object-cover mix-blend-multiply" />
               <div className="absolute inset-0 bg-gradient-to-tr from-[color:var(--herbal-deep)]/30 via-transparent to-[color:var(--gold)]/20" />
             </div>
@@ -274,15 +274,15 @@ function BundlesTease() {
         <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
           {bundles.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.08}>
-              <Link to="/rituals/$slug" params={{ slug: p.slug }} className="group block relative overflow-hidden aspect-[4/5] bg-[color:var(--sand-deep)]">
+              <Link to="/rituals/$slug" params={{ slug: p.slug }} className="group block relative overflow-hidden aspect-[4/5] bg-[color:var(--sand-deep)] dark:bg-white">
                 <img src={p.images[0]} alt={p.name} className="product-zoom absolute inset-0 h-full w-full object-cover mix-blend-multiply" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--ink)] via-[color:var(--ink)]/40 to-transparent" />
-                <div className="absolute bottom-0 inset-x-0 p-8 text-[color:var(--sand)]">
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-900/40 to-transparent" />
+                <div className="absolute bottom-0 inset-x-0 p-8 text-neutral-100">
                   <div className="text-[10px] tracking-[0.4em] uppercase text-[color:var(--gold)]">{p.ritual}</div>
                   <div className="font-serif text-3xl mt-2">{isRtl ? p.nameAr : p.name}</div>
                   <div className="flex items-center justify-between mt-4">
-                    <span className="text-sm opacity-70">{p.ritualTime}</span>
-                    <span className="text-sm">{p.price} {t("cart.jd")}</span>
+                    <span className="text-sm opacity-70 text-neutral-300">{p.ritualTime}</span>
+                    <span className="text-sm text-neutral-100">{p.price} {t("cart.jd")}</span>
                   </div>
                 </div>
               </Link>

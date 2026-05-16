@@ -23,7 +23,7 @@ function Story() {
   return (
     <div dir={isRtl ? "rtl" : "ltr"}>
       <section className="relative py-28 lg:py-40 overflow-hidden grain border-b border-[color:var(--gold)]/20">
-        <img src={products[2].images[0]} alt="" className="absolute inset-0 h-full w-full object-cover opacity-15 mix-blend-multiply" />
+        <img src={products[2].images[0]} alt="" className="absolute inset-0 h-full w-full object-cover opacity-15 mix-blend-multiply dark:mix-blend-normal dark:opacity-5" />
         <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--sand)]/70 via-[color:var(--sand)]/85 to-[color:var(--sand)]" />
         <div className="relative mx-auto max-w-5xl px-5 lg:px-10 text-center">
           <Reveal><GoldRule className="justify-center" /></Reveal>

@@ -204,7 +204,7 @@ function ProductPage() {
               onMouseMove={onMove}
               onMouseLeave={() => setZoom(null)}
               onClick={() => setLight(true)}
-              className="relative aspect-[3/4] overflow-hidden bg-[color:var(--sand-deep)] cursor-zoom-in grain"
+              className="relative aspect-[3/4] overflow-hidden bg-[color:var(--sand-deep)] dark:bg-white cursor-zoom-in grain"
             >
               {p.badge && <span className={`absolute top-5 ${isRtl ? "right-5" : "left-5"} z-10 px-3 py-1 text-[10px] tracking-[0.3em] uppercase bg-[color:var(--herbal-deep)]/90 text-[color:var(--sand)]`}>{p.badge}</span>}
               <AnimatePresence mode="wait">
@@ -231,7 +231,7 @@ function ProductPage() {
                   onClick={() => setIdx(i % p.images.length)}
                   className={`aspect-square overflow-hidden border ${idx === i % p.images.length ? "border-[color:var(--gold)]" : "border-transparent"}`}
                 >
-                  <img src={src} alt="" className="h-full w-full object-cover bg-[color:var(--sand-deep)] mix-blend-multiply" />
+                  <img src={src} alt="" className="h-full w-full object-cover bg-[color:var(--sand-deep)] dark:bg-neutral-100 mix-blend-multiply" />
                 </button>
               ))}
             </div>
@@ -373,7 +373,7 @@ function ProductPage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="relative aspect-[16/9] overflow-hidden select-none">
+            <div className="relative aspect-[16/9] overflow-hidden select-none bg-white">
               <img src={p.images[0]} alt="Before" className="absolute inset-0 h-full w-full object-cover mix-blend-multiply" style={{ filter: "saturate(.6) brightness(.85) contrast(.9)" }} />
               <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 0 ${ba}%)` }}>
                 <img src={p.images[p.images.length - 1] ?? p.images[0]} alt="After" className="h-full w-full object-cover mix-blend-multiply" style={{ filter: "saturate(1.15) brightness(1.05)" }} />

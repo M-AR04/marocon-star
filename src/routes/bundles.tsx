@@ -60,7 +60,7 @@ function Bundles() {
           {bundles.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.05}>
               <Link to="/rituals/$slug" params={{ slug: p.slug }} className={`group grid lg:grid-cols-2 gap-10 lg:gap-16 items-center ${i % 2 ? "lg:[direction:rtl]" : ""}`}>
-                <div className={`relative aspect-[4/5] overflow-hidden bg-[color:var(--sand-deep)] grain ${isRtl ? "[direction:rtl]" : "[direction:ltr]"}`}>
+                <div className={`relative aspect-[4/5] overflow-hidden bg-[color:var(--sand-deep)] dark:bg-white grain ${isRtl ? "[direction:rtl]" : "[direction:ltr]"}`}>
                   <img src={p.images[0]} alt={p.name} className="product-zoom absolute inset-0 h-full w-full object-cover mix-blend-multiply" />
                   {p.badge && <span className={`absolute top-5 ${isRtl ? "right-5" : "left-5"} px-3 py-1 text-[10px] tracking-[0.3em] uppercase bg-[color:var(--herbal-deep)]/90 text-[color:var(--sand)]`}>{p.badge}</span>}
                 </div>
