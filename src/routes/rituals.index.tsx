@@ -26,7 +26,7 @@ function Rituals() {
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
           <Reveal>
             <div className="text-[10px] tracking-[0.5em] uppercase text-[color:var(--gold)] mb-4">
-              {isRtl ? "الصيدلية الطبيعية · المختبر" : "The Apothecary · المختبر"}
+              {isRtl ? "الصيدلية الطبيعية · المختبر" : "The Apothecary"}
             </div>
             <h1 className="font-serif text-6xl lg:text-8xl leading-[0.95] max-w-4xl">
               {isRtl ? (
