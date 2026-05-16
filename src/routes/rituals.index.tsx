@@ -3,6 +3,7 @@ import { products, categories, type Category } from "@/lib/products";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Reveal } from "@/components/site/Reveal";
 import { useState } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 type Search = { cat?: Category };
 
@@ -17,18 +18,25 @@ function Rituals() {
   const { cat } = Route.useSearch();
   const [active, setActive] = useState<Category | "all">(cat ?? "all");
   const list = active === "all" ? products : products.filter((p) => p.category === active);
+  const { t, isRtl } = useLanguage();
 
   return (
-    <>
+    <div dir={isRtl ? "rtl" : "ltr"}>
       <section className="py-20 lg:py-32 border-b border-[color:var(--gold)]/20">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
           <Reveal>
-            <div className="text-[10px] tracking-[0.5em] uppercase text-[color:var(--gold)] mb-4">The Apothecary · المختبر</div>
-            <h1 className="font-serif text-6xl lg:text-8xl leading-[0.95] max-w-4xl">All rituals,
-              <span className="italic text-[color:var(--herbal-deep)]"> all ceremonies.</span>
+            <div className="text-[10px] tracking-[0.5em] uppercase text-[color:var(--gold)] mb-4">
+              {isRtl ? "الصيدلية الطبيعية · المختبر" : "The Apothecary · المختبر"}
+            </div>
+            <h1 className="font-serif text-6xl lg:text-8xl leading-[0.95] max-w-4xl">
+              {isRtl ? (
+                <>كل الطقوس، <span className="italic text-[color:var(--herbal-deep)]">كل البكجات.</span></>
+              ) : (
+                <>All rituals, <span className="italic text-[color:var(--herbal-deep)]">all ceremonies.</span></>
+              )}
             </h1>
             <p className="mt-6 max-w-xl text-[color:var(--muted-foreground)]">
-              A complete shelf of Moroccan beauty — oils, soaps, butters, hammam, masks, and the curated bundles that hold them together.
+              {t("rituals.desc")}
             </p>
           </Reveal>
         </div>
@@ -48,7 +56,7 @@ function Rituals() {
                     : "border-[color:var(--ink)]/15 hover:border-[color:var(--gold)]"
                 }`}
               >
-                {c.label}
+                {isRtl ? c.labelAr : c.label}
               </button>
             );
           })}
@@ -62,6 +70,6 @@ function Rituals() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

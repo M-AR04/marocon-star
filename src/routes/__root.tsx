@@ -13,6 +13,7 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { CartDrawer } from "@/components/site/CartDrawer";
 import { CartProvider } from "@/lib/cart";
+import { LanguageProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -65,7 +66,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/78f047c5-2714-4fc0-a863-8fa8ee25fd0f" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/78f047c5-2714-4fc0-a863-8fa8ee25fd0f" },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: "/logo.png" }
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -75,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html>
       <head><HeadContent /></head>
       <body>
         {children}
@@ -89,14 +93,16 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <Nav />
-        <main className="min-h-screen pt-16 lg:pt-20">
-          <Outlet />
-        </main>
-        <Footer />
-        <CartDrawer />
-      </CartProvider>
+      <LanguageProvider>
+        <CartProvider>
+          <Nav />
+          <main className="min-h-screen pt-16 lg:pt-20">
+            <Outlet />
+          </main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }
