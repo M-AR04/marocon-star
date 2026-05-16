@@ -1,9 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Mail, Phone, MapPin, Globe } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
+import { useTheme } from "@/lib/theme";
 
 export function Footer() {
   const { t, isRtl } = useLanguage();
+  const { isDark } = useTheme();
 
   return (
     <footer className="relative mt-32 border-t border-[color:var(--gold)]/30 bg-[color:var(--herbal-deep)] text-[color:var(--sand)] overflow-hidden">
@@ -12,9 +14,9 @@ export function Footer() {
         <div className="lg:col-span-2 max-w-md">
           <div className="flex items-center gap-3">
             <img
-              src="/logo.png"
+              src={isDark ? "/darkmode.png" : "/logo.png"}
               alt="Moroccan Star Logo"
-              className="h-12 w-12 object-contain rounded-full bg-white border border-[color:var(--gold)]/30 p-0.5"
+              className="h-12 w-12 object-contain rounded-full bg-white dark:bg-neutral-900 border border-[color:var(--gold)]/30 p-0.5"
             />
             <div>
               <div className="font-serif text-3xl leading-none">Moroccan Star</div>

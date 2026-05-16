@@ -14,6 +14,7 @@ import { Footer } from "@/components/site/Footer";
 import { CartDrawer } from "@/components/site/CartDrawer";
 import { CartProvider } from "@/lib/cart";
 import { LanguageProvider } from "@/lib/i18n";
+import { ThemeProvider } from "@/lib/theme";
 
 function NotFoundComponent() {
   return (
@@ -93,16 +94,18 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <CartProvider>
-          <Nav />
-          <main className="min-h-screen pt-16 lg:pt-20">
-            <Outlet />
-          </main>
-          <Footer />
-          <CartDrawer />
-        </CartProvider>
-      </LanguageProvider>
+      <ThemeProvider>
+        <LanguageProvider>
+          <CartProvider>
+            <Nav />
+            <main className="min-h-screen pt-16 lg:pt-20">
+              <Outlet />
+            </main>
+            <Footer />
+            <CartDrawer />
+          </CartProvider>
+        </LanguageProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

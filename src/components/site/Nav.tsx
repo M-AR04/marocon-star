@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingBag, Menu, X, Search, Globe } from "lucide-react";
+import { ShoppingBag, Menu, X, Search, Globe, Sun, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/lib/i18n";
+import { useTheme } from "@/lib/theme";
 
 const NAV = [
   { to: "/", label: "Home", key: "home" },
@@ -19,6 +20,7 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobile, setMobile] = useState(false);
   const { language, setLanguage, t, isRtl } = useLanguage();
+  const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -38,9 +40,9 @@ export function Nav() {
           <div className="mx-auto max-w-7xl px-5 lg:px-10 flex items-center justify-between h-16 lg:h-20">
             <Link to="/" className="flex items-center gap-3 group">
               <img
-                src="/logo.png"
+                src={isDark ? "/darkmode.png" : "/logo.png"}
                 alt="Moroccan Star Logo"
-                className="h-10 w-10 object-contain rounded-full border border-[color:var(--gold)]/30 p-0.5 group-hover:rotate-12 transition-transform duration-500 bg-white"
+                className="h-10 w-10 object-contain rounded-full border border-[color:var(--gold)]/30 p-0.5 group-hover:rotate-12 transition-transform duration-500 bg-white dark:bg-neutral-900"
               />
               <div className="leading-tight">
                 <div className="font-serif text-lg lg:text-xl tracking-wide">Moroccan Star</div>
@@ -70,6 +72,19 @@ export function Nav() {
               >
                 <Globe className="h-3.5 w-3.5 text-[color:var(--gold)]" />
                 <span>{language === "en" ? "العربية" : "EN"}</span>
+              </button>
+
+              {/* Theme Switcher */}
+              <button
+                onClick={toggleTheme}
+                className="flex items-center justify-center h-10 w-10 rounded-full border border-[color:var(--gold)]/40 hover:bg-[color:var(--gold)]/15 transition text-[color:var(--ink)]"
+                aria-label="Toggle Theme"
+              >
+                {isDark ? (
+                  <Sun className="h-4 w-4 text-[color:var(--gold)]" />
+                ) : (
+                  <Moon className="h-4 w-4 text-[color:var(--gold)]" />
+                )}
               </button>
 
               <button aria-label="Search" className="hidden lg:flex h-9 w-9 items-center justify-center rounded-full hover:bg-[color:var(--gold)]/15 transition">
@@ -136,21 +151,43 @@ export function Nav() {
                   </Link>
                 ))}
 
-                {/* Mobile Language Switcher inside Drawer */}
-                <button
-                  onClick={() => {
-                    setLanguage(language === "en" ? "ar" : "en");
-                    setMobile(false);
-                  }}
-                  className="mt-8 flex items-center justify-center gap-2.5 w-full h-12 rounded-sm border border-[color:var(--gold)]/40 hover:bg-[color:var(--gold)]/15 transition text-xs tracking-[0.2em] uppercase font-semibold text-[color:var(--ink)]"
-                >
-                  <Globe className="h-4 w-4 text-[color:var(--gold)]" />
-                  <span>{language === "en" ? "العربية" : "English"}</span>
-                </button>
+                <div className="mt-8 flex gap-3">
+                  {/* Mobile Language Switcher */}
+                  <button
+                    onClick={() => {
+                      setLanguage(language === "en" ? "ar" : "en");
+                      setMobile(false);
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2.5 h-12 rounded-sm border border-[color:var(--gold)]/40 hover:bg-[color:var(--gold)]/15 transition text-xs tracking-[0.2em] uppercase font-semibold text-[color:var(--ink)]"
+                  >
+                    <Globe className="h-4 w-4 text-[color:var(--gold)]" />
+                    <span>{language === "en" ? "العربية" : "English"}</span>
+                  </button>
+
+                  {/* Mobile Theme Switcher */}
+                  <button
+                    onClick={() => {
+                      toggleTheme();
+                      setMobile(false);
+                    }}
+                    className="flex items-center justify-center h-12 w-12 rounded-sm border border-[color:var(--gold)]/40 hover:bg-[color:var(--gold)]/15 transition text-[color:var(--ink)]"
+                    aria-label="Toggle Theme"
+                  >
+                    {isDark ? (
+                      <Sun className="h-4 w-4 text-[color:var(--gold)]" />
+                    ) : (
+                      <Moon className="h-4 w-4 text-[color:var(--gold)]" />
+                    )}
+                  </button>
+                </div>
               </nav>
               <div className="mt-auto p-6 text-xs text-[color:var(--muted-foreground)]" dir={isRtl ? "rtl" : "ltr"}>
                 <div className="flex items-center gap-3 mb-2">
-                  <img src="/logo.png" alt="Logo" className="h-7 w-7 object-contain rounded-full bg-white border border-[color:var(--gold)]/30" />
+                  <img 
+                    src={isDark ? "/darkmode.png" : "/logo.png"} 
+                    alt="Logo" 
+                    className="h-7 w-7 object-contain rounded-full bg-white dark:bg-neutral-900 border border-[color:var(--gold)]/30" 
+                  />
                   <div className="font-arabic text-[color:var(--gold)] text-sm font-semibold">النجمة المغربية للمنتجات الطبيعية</div>
                 </div>
                 Amman, Jordan · +962 79 515 2169
